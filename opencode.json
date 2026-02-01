@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/schemas/config.json",
+  "project": {
+    "name": "CrossPlatform-Dev-Project",
+    "strict_mode": true
+  },
+  "platforms": {
+    "windows": {
+      "interpreter": { "python": ".\\.venv\\Scripts\\python.exe" },
+      "shell": { "preferred": "powershell", "init_command": ".\\.venv\\Scripts\\activate.ps1" }
+    },
+    "linux": {
+      "interpreter": { "python": "./.venv/bin/python" },
+      "shell": { "preferred": "bash", "init_command": "source .venv/bin/activate" }
+    }
+  },
+  "actions": {
+    "install": "uv pip install -r pyproject.toml",
+    "test": "uv run pytest",
+    "build": "uv build"
+  },
+  "exclude": [".venv/**", "__pycache__/**", ".git/**", "*.bak"]
+}
