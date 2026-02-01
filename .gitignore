@@ -1,17 +1,179 @@
-# Python / uv
+# ============================================================================
+# SECURITY - Never commit these
+# ============================================================================
+.env
+.env.*
+*.key
+*.pem
+*.cert
+credentials.json
+credentials.yaml
+secrets.json
+secrets.yaml
+config.local.*
+.aws/
+.azure/
+.gcp/
+
+# ============================================================================
+# DATA - Prevent accidental sensitive data commits
+# ============================================================================
+*.csv
+*.parquet
+*.feather
+*.xlsx
+*.xls
+*.tsv
+*.db
+*.sqlite
+*.sqlite3
+*.duckdb
+data/
+datasets/
+raw_data/
+
+# ============================================================================
+# MODELS - Prevent large/proprietary model commits
+# ============================================================================
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.onnx
+*.pb
+*.safetensors
+models/
+checkpoints/
+saved_models/
+weights/
+
+# ============================================================================
+# OUTPUTS - Prevent result leakage
+# ============================================================================
+.ipynb_checkpoints/
+*.log
+logs/
+outputs/
+results/
+experiments/
+runs/
+wandb/
+mlruns/
+tensorboard/
+lightning_logs/
+
+# ============================================================================
+# PYTHON/UV
+# ============================================================================
 .venv/
+venv/
+env/
 __pycache__/
 *.py[cod]
+*$py.class
 .python-version
 uv.lock
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg-info/
+dist/
+build/
 
-# OpenCode State (Keep instructions, ignore session cache)
+# ============================================================================
+# OPENCODE - Keep configs, ignore state
+# ============================================================================
 .opencode/
 !opencode.json
 !AGENTS.md
 !TASKS.md
 !NOTES.md
 
-# Environment
-.env
-.env.*
+# ============================================================================
+# JUPYTER
+# ============================================================================
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# ============================================================================
+# CLOUD & DATA ENGINEERING TOOLS
+# ============================================================================
+# dbt
+dbt_packages/
+.dbt/
+target/
+dbt_modules/
+
+# Airflow
+airflow_logs/
+airflow.cfg
+airflow.db
+unittests.cfg
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Spark
+spark-warehouse/
+metastore_db/
+derby.log
+
+# ============================================================================
+# SYSTEM & EDITORS
+# ============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.code-workspace
+.Rproj.user/
+.Rhistory
+.RData
+
+# ============================================================================
+# ARCHIVES
+# ============================================================================
+*.zip
+*.tar.gz
+*.tar
+*.rar
+*.7z
+*.gz
+*.bz2
+
+# ============================================================================
+# TEMPORARY & CACHE
+# ============================================================================
+*.tmp
+*.temp
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+
+# ============================================================================
+# ALLOW EXCEPTIONS (uncomment as needed)
+# ============================================================================
+# !data/reference/sample_data.csv
+# !models/baseline_model.pkl
