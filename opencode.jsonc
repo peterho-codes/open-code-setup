@@ -1,20 +1,22 @@
 {
   "$schema": "https://opencode.ai/config.json",
   
-  "project": {
-    "name": "data-science-project",
-    "strict_mode": false
-  },
-
-  "agents": {
+  // Theme
+  "theme": "opencode",
+  
+  // Agent configuration
+  "agent": {
     "build": {
-      "systemPrompt": "Read AGENTS.md for detailed instructions"
+      "prompt": "Read AGENTS.md for detailed instructions"
     }
   },
 
-  "files": {
-    "maxFileSize": 5000000,
-    "exclude": [
+  // Instructions - reference your AGENTS.md
+  "instructions": ["AGENTS.md"],
+
+  // File watching - exclude patterns
+  "watcher": {
+    "ignore": [
       // Version control & environments
       ".git/**",
       ".venv/**",
@@ -22,15 +24,19 @@
       "__pycache__/**",
       "*.pyc",
       
-      // Data files (never include in context)
+      // Data files (prevent watching large data files)
       "data/**",
       "datasets/**",
       "*.csv",
       "*.parquet",
       "*.feather",
       "*.xlsx",
+      "*.tsv",
+      "*.db",
+      "*.sqlite",
+      "*.duckdb",
       
-      // Model files (too large)
+      // Model files (too large to watch)
       "models/**",
       "checkpoints/**",
       "*.pkl",
@@ -38,12 +44,18 @@
       "*.h5",
       "*.pt",
       "*.pth",
+      "*.onnx",
+      "*.safetensors",
       
       // Outputs & logs
       "outputs/**",
       "logs/**",
       "*.log",
       ".ipynb_checkpoints/**",
+      "experiments/**",
+      "runs/**",
+      "wandb/**",
+      "mlruns/**",
       
       // Build artifacts
       "dist/**",
@@ -53,16 +65,16 @@
       // Backups & temp
       "*.bak",
       "*.tmp",
-      "*.swp"
-    ]
-  },
-
-  "customCommands": {
-    "test": "pytest tests/ -v --cov",
-    "format": "ruff format .",
-    "lint": "ruff check .",
-    "typecheck": "mypy .",
-    "install": "uv sync",
-    "clean": "find . -type d -name __pycache__ -exec rm -rf {} +"
-  }
-}
+      "*.swp",
+      
+      // Common noisy directories
+      "node_modules/**",
+      ".cache/**",
+      ".pytest_cache/**",
+      ".mypy_cache/**",
+      ".ruff_cache/**",
+      
+      // Cloud/data engineering
+      "dbt_packages/**",
+      ".dbt/**",
+      "target/**",
