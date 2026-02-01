@@ -1,4 +1,4 @@
-Important things to do launchinf opencode
+Important things to do launching opencode
 
 On Windows: Open PowerShell in your project folder and run: uv venv and then only run opencode
 
