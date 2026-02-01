@@ -4,16 +4,6 @@
   // Theme
   "theme": "opencode",
   
-  // Agent configuration
-  "agent": {
-    "build": {
-      "prompt": "Read AGENTS.md for detailed instructions"
-    }
-  },
-
-  // Instructions - reference your AGENTS.md
-  "instructions": ["AGENTS.md"],
-
   // File watching - exclude patterns
   "watcher": {
     "ignore": [
@@ -24,7 +14,7 @@
       "__pycache__/**",
       "*.pyc",
       
-      // Data files (prevent watching large data files)
+      // Data files
       "data/**",
       "datasets/**",
       "*.csv",
@@ -36,7 +26,7 @@
       "*.sqlite",
       "*.duckdb",
       
-      // Model files (too large to watch)
+      // Model files
       "models/**",
       "checkpoints/**",
       "*.pkl",
@@ -102,7 +92,7 @@
     }
   },
 
-  // Formatters - auto-format on file changes
+  // Formatters
   "formatter": {
     "ruff": {
       "command": ["ruff", "format", "$FILE"],
@@ -110,7 +100,7 @@
     }
   },
 
-  // Permissions - require approval for potentially destructive operations
+  // Permissions
   "permission": {
     "bash": "ask",
     "edit": "ask"
