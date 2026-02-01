@@ -1,23 +1,68 @@
 {
-  "$schema": "https://opencode.ai/schemas/config.json",
+  "$schema": "https://opencode.ai/config.json",
+  
   "project": {
-    "name": "CrossPlatform-Dev-Project",
-    "strict_mode": true
+    "name": "data-science-project",
+    "strict_mode": false
   },
-  "platforms": {
-    "windows": {
-      "interpreter": { "python": ".\\.venv\\Scripts\\python.exe" },
-      "shell": { "preferred": "powershell", "init_command": ".\\.venv\\Scripts\\activate.ps1" }
-    },
-    "linux": {
-      "interpreter": { "python": "./.venv/bin/python" },
-      "shell": { "preferred": "bash", "init_command": "source .venv/bin/activate" }
+
+  "agents": {
+    "build": {
+      "systemPrompt": "Read AGENTS.md for detailed instructions"
     }
   },
-  "actions": {
-    "install": "uv pip install -r pyproject.toml",
-    "test": "uv run pytest",
-    "build": "uv build"
+
+  "files": {
+    "maxFileSize": 5000000,
+    "exclude": [
+      // Version control & environments
+      ".git/**",
+      ".venv/**",
+      "venv/**",
+      "__pycache__/**",
+      "*.pyc",
+      
+      // Data files (never include in context)
+      "data/**",
+      "datasets/**",
+      "*.csv",
+      "*.parquet",
+      "*.feather",
+      "*.xlsx",
+      
+      // Model files (too large)
+      "models/**",
+      "checkpoints/**",
+      "*.pkl",
+      "*.joblib",
+      "*.h5",
+      "*.pt",
+      "*.pth",
+      
+      // Outputs & logs
+      "outputs/**",
+      "logs/**",
+      "*.log",
+      ".ipynb_checkpoints/**",
+      
+      // Build artifacts
+      "dist/**",
+      "build/**",
+      "*.egg-info/**",
+      
+      // Backups & temp
+      "*.bak",
+      "*.tmp",
+      "*.swp"
+    ]
   },
-  "exclude": [".venv/**", "__pycache__/**", ".git/**", "*.bak"]
+
+  "customCommands": {
+    "test": "pytest tests/ -v --cov",
+    "format": "ruff format .",
+    "lint": "ruff check .",
+    "typecheck": "mypy .",
+    "install": "uv sync",
+    "clean": "find . -type d -name __pycache__ -exec rm -rf {} +"
+  }
 }
