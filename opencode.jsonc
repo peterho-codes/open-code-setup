@@ -78,3 +78,47 @@
       "dbt_packages/**",
       ".dbt/**",
       "target/**",
+      ".terraform/**"
+    ]
+  },
+
+  // Custom commands
+  "command": {
+    "test": {
+      "template": "Run pytest with coverage:\n```bash\npytest tests/ -v --cov\n```\nShow results and suggest fixes for any failures.",
+      "description": "Run tests with coverage"
+    },
+    "format": {
+      "template": "Format all Python code using ruff:\n```bash\nruff format .\n```",
+      "description": "Format code with ruff"
+    },
+    "lint": {
+      "template": "Check code quality with ruff:\n```bash\nruff check .\n```\nReport all issues found.",
+      "description": "Lint code with ruff"
+    },
+    "typecheck": {
+      "template": "Run type checking with mypy:\n```bash\nmypy .\n```\nReport type errors and suggest fixes.",
+      "description": "Type check with mypy"
+    }
+  },
+
+  // Formatters - auto-format on file changes
+  "formatter": {
+    "ruff": {
+      "command": ["ruff", "format", "$FILE"],
+      "extensions": [".py"]
+    }
+  },
+
+  // Permissions - require approval for potentially destructive operations
+  "permission": {
+    "bash": "ask",
+    "edit": "ask"
+  },
+
+  // Share settings
+  "share": "manual",
+
+  // Auto-update behavior
+  "autoupdate": "notify"
+}
